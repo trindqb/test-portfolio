@@ -67,10 +67,10 @@ const MILESTONES: Milestone[] = [
   {
     id: 0,
     x: 800,
-    title: 'Started Coding',
-    year: '2016',
-    description: 'Wrote my first "Hello World" and fell in love with programming. Built simple HTML pages and learned the fundamentals of web development.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
+    title: 'Started Uvi Journey',
+    year: '2009',
+    description: 'Joint Da Nang University of Science and Technology, embarking on my computer science adventure.',
+    tech: ['C/C++', 'Data Structures', 'Algorithms'],
     color: '#4ade80',
     icon: '🌱',
   },
@@ -78,7 +78,7 @@ const MILESTONES: Milestone[] = [
     id: 1,
     x: 2200,
     title: 'University & CS Degree',
-    year: '2017',
+    year: '2014',
     description: 'Pursued Computer Science, diving deep into algorithms, data structures, and software engineering principles.',
     tech: ['Python', 'Java', 'C++', 'SQL'],
     color: '#60a5fa',
@@ -87,20 +87,20 @@ const MILESTONES: Milestone[] = [
   {
     id: 2,
     x: 3600,
-    title: 'First Internship',
-    year: '2018',
-    description: 'Joined a startup as a frontend intern. Built real products used by thousands of users and learned agile development.',
-    tech: ['React', 'Redux', 'Node.js', 'Git'],
+    title: 'Graduate School',
+    year: '2015',
+    description: 'Joined Kyung Hee University for graduate studies in Computer Science.',
+    tech: ['Python', 'Deep Learning', 'Wireless Communications', 'Git'],
     color: '#c084fc',
     icon: '💼',
   },
   {
     id: 3,
     x: 5000,
-    title: 'Full-Stack Developer',
-    year: '2019',
-    description: 'Landed first full-time role. Led development of a SaaS platform serving 50K+ users with microservices architecture.',
-    tech: ['TypeScript', 'Next.js', 'PostgreSQL', 'Docker', 'AWS'],
+    title: 'Ph.D. in Computer Science',
+    year: '2022',
+    description: 'Completed my Ph.D. in Computer Science with a focus on artificial intelligence and machine learning.',
+    tech: ['Python', 'Deep Learning', 'Wireless Communications', 'Math', "Optimization"],
     color: '#f472b6',
     icon: '🚀',
   },
@@ -108,7 +108,7 @@ const MILESTONES: Milestone[] = [
     id: 4,
     x: 6600,
     title: 'Open Source Contributor',
-    year: '2020',
+    year: '2023',
     description: 'Started contributing to major open source projects. Built tools used by thousands of developers worldwide.',
     tech: ['Rust', 'WebAssembly', 'GraphQL', 'Kubernetes'],
     color: '#fb923c',
@@ -118,7 +118,7 @@ const MILESTONES: Milestone[] = [
     id: 5,
     x: 8200,
     title: 'Tech Lead',
-    year: '2021',
+    year: '2025',
     description: 'Promoted to Tech Lead. Managed a team of 8 engineers, established coding standards, and mentored junior developers.',
     tech: ['System Design', 'CI/CD', 'Terraform', 'Team Leadership'],
     color: '#facc15',
@@ -128,7 +128,7 @@ const MILESTONES: Milestone[] = [
     id: 6,
     x: 9800,
     title: 'Indie Hacker & Creator',
-    year: '2023',
+    year: '2026',
     description: 'Launched my own products. Building the future with AI-powered tools and creative interactive experiences like this one.',
     tech: ['AI/ML', 'Three.js', 'Svelte', 'Edge Computing'],
     color: '#e879f9',
@@ -138,7 +138,7 @@ const MILESTONES: Milestone[] = [
     id: 7,
     x: 11200,
     title: 'The Journey Continues...',
-    year: '2025',
+    year: '2026',
     description: 'Always learning, always building. The road ahead is full of possibilities. What will we create together?',
     tech: ['Your Stack Here', '∞ Possibilities'],
     color: '#22d3ee',
@@ -954,11 +954,11 @@ export default function CarTimelinePortfolio() {
         const titleBounce = Math.sin(gs.introTimer * 2) * 5;
         ctx.fillStyle = '#FF4444';
         ctx.font = `bold ${Math.min(w * 0.08, 60)}px monospace`;
-        ctx.fillText('🚗 Career Drive', w / 2, h * 0.35 + titleBounce);
+        ctx.fillText('Tri Nguyen Dang', w / 2, h * 0.35 + titleBounce);
 
         ctx.fillStyle = '#AAA';
         ctx.font = `${Math.min(w * 0.025, 18)}px monospace`;
-        ctx.fillText('An interactive journey through my career', w / 2, h * 0.45);
+        ctx.fillText('Drive the car and explore my journey!', w / 2, h * 0.45);
 
         ctx.fillStyle = '#FFF';
         ctx.font = `${Math.min(w * 0.025, 16)}px monospace`;

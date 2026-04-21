@@ -251,8 +251,6 @@ export default function CarTimelinePortfolio() {
     touchDirection: 0,
   });
 
-  const [activeCard, setActiveCard] = useState<Milestone | null>(null);
-  const [cardVisible, setCardVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [visitedCount, setVisitedCount] = useState(0);
   const [isBoosting, setIsBoosting] = useState(false);
@@ -1120,20 +1118,13 @@ export default function CarTimelinePortfolio() {
           gs.showCard = true;
           gs.cardTargetOpacity = 1;
           gs.activeMilestone = ms;
-          setActiveCard(ms);
-          setCardVisible(true);
         }
       } else {
         if (gs.showCard && Math.abs(gs.carSpeed) > 2) {
           gs.showCard = false;
           gs.cardTargetOpacity = 0;
-          setTimeout(() => {
-            if (!gs.showCard) {
-              setCardVisible(false);
-              setActiveCard(null);
-              gs.lastMilestoneId = -1;
-            }
-          }, 300);
+          gs.activeMilestone = null;
+          gs.lastMilestoneId = -1;
         }
       }
 
@@ -1190,10 +1181,10 @@ export default function CarTimelinePortfolio() {
       <canvas ref={canvasRef} className="block w-full h-full" />
 
       {/* Milestone Card Overlay */}
-      {cardVisible && activeCard && (
+      {gameStateRef.current.showCard && gameStateRef.current.activeMilestone && (
         <div
-          className={`absolute left-1/2 bottom-8 -translate-x-1/2 z-50 ${cardVisible ? 'card-enter' : 'card-exit'}`}
-          style={{ maxWidth: '440px', width: '90%' }}
+          className={`absolute left-1/2 bottom-8 -translate-x-1/2 z-50 ${gameStateRef.current.showCard ? 'card-enter' : 'card-exit'}`}
+          style={{ maxWidth: '440px', width: '90%', opacity: gameStateRef.current.cardOpacity }}
         >
           <div
             className="relative rounded-2xl overflow-hidden backdrop-blur-xl shadow-2xl border border-white/10"
@@ -1204,23 +1195,23 @@ export default function CarTimelinePortfolio() {
             {/* Top color bar */}
             <div
               className="h-1.5"
-              style={{ background: `linear-gradient(90deg, ${activeCard.color}, ${activeCard.color}88)` }}
+              style={{ background: `linear-gradient(90deg, ${gameStateRef.current.activeMilestone.color}, ${gameStateRef.current.activeMilestone.color}88)` }}
             />
 
             <div className="p-5">
               {/* Header */}
               <div className="flex items-start gap-3 mb-3">
-                <span className="text-3xl">{activeCard.icon}</span>
+                <span className="text-3xl">{gameStateRef.current.activeMilestone.icon}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span
                       className="text-xs font-bold px-2 py-0.5 rounded-full"
-                      style={{ background: activeCard.color, color: '#000' }}
+                      style={{ background: gameStateRef.current.activeMilestone.color, color: '#000' }}
                     >
-                      {activeCard.year}
+                      {gameStateRef.current.activeMilestone.year}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mt-1 leading-tight">{activeCard.title}</h3>
+                  <h3 className="text-lg font-bold text-white mt-1 leading-tight">{gameStateRef.current.activeMilestone.title}</h3>
                 </div>
                 <button
                   onClick={() => {
@@ -1229,8 +1220,6 @@ export default function CarTimelinePortfolio() {
                     gs.cardTargetOpacity = 0;
                     gs.activeMilestone = null;
                     gs.lastMilestoneId = -1;
-                    setCardVisible(false);
-                    setActiveCard(null);
                   }}
                   className="text-white/40 hover:text-white transition-colors text-xl leading-none mt-0.5"
                 >
@@ -1239,18 +1228,18 @@ export default function CarTimelinePortfolio() {
               </div>
 
               {/* Description */}
-              <p className="text-sm text-gray-300 leading-relaxed mb-4">{activeCard.description}</p>
+              <p className="text-sm text-gray-300 leading-relaxed mb-4">{gameStateRef.current.activeMilestone.description}</p>
 
               {/* Tech tags */}
               <div className="flex flex-wrap gap-1.5">
-                {activeCard.tech.map((t) => (
+                {gameStateRef.current.activeMilestone.tech.map((t) => (
                   <span
                     key={t}
                     className="text-xs px-2.5 py-1 rounded-full font-medium"
                     style={{
-                      background: `${activeCard.color}20`,
-                      color: activeCard.color,
-                      border: `1px solid ${activeCard.color}40`,
+                      background: `${gameStateRef.current.activeMilestone.color}20`,
+                      color: gameStateRef.current.activeMilestone.color,
+                      border: `1px solid ${gameStateRef.current.activeMilestone.color}40`,
                     }}
                   >
                     {t}
